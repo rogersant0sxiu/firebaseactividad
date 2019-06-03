@@ -40,7 +40,16 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Login Button -->
@@ -64,7 +73,7 @@
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
-
+        <!-- Link to Login Screen -->
 
         <Button
             android:id="@+id/btn_signup"

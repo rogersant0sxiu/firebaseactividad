@@ -23,12 +23,12 @@ public class SignupActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
@@ -41,14 +41,15 @@ public class SignupActivity extends AppCompatActivity {
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
+                // startActivity(new Intent(SignupActivity.this, ResetPasswordActivity.class));
             }
         });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent=new Intent(SignupActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -60,35 +61,33 @@ public class SignupActivity extends AppCompatActivity {
                 String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Introduzca la dirección del correo electrónico", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Introduzca la direccion de correo electronico!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Introduzca la contraseña!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Introducir la contraseña!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Contraseña demasiado corta, ingrese un mínimo de 6 caracteres!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Contraseña demasiado corta, ingresar un minimo de 6 caracteres!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                //create user
+                //crear usuario
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
-
-                                //Si falla el inicio de sesión, muestre un mensaje al usuario. Si el inicio de sesión tiene éxito
-                                //se notificara al oyente del estado de autentificación y se le asignará lógica para maejar
-                                //El usuario con sesión iniciada se puede manejar en el oyente
-
+                                // Si falla el inicio de sesión, muestre un mensaje al usuario. Si el inicio de sesión tiene éxito
+                                // se notificará al oyente del estado de autenticación y se le asignará lógica para manejar
+                                // el usuario con sesión iniciada se puede manejar en el oyente.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Autentificación fallida" + task.getException(),
+                                    Toast.makeText(SignupActivity.this, "Autentificacion fallida." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
