@@ -18,11 +18,12 @@
     <string name="btn_link_to_register">No eres miembro? Registrese en Firebase!</string>
     <string name="btn_link_to_login">Ya registrado. Iniciar sesión!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
-    <string name="btn_forgot_password">Ólvido se contraseña?</string>
+    <string name="btn_forgot_password">Ólvido su contraseña?</string>
     <string name="btn_reset_password">Restablecer la contraseña</string>
     <string name="btn_back"><![CDATA[<< Back]]></string>
     <string name="hint_new_email">Nuevo Email</string>
     <string name="btn_change">Cambio</string>
+    <string name="btn_changeE">Cambio Email</string>
     <string name="btn_send">Enviar</string>
     <string name="btn_remove">Retirar</string>
     <string name="btn_sign_out">Desconectar</string>
